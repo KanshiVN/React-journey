@@ -1,6 +1,9 @@
 import React,{useState} from "react";
 
+
 function Practice({name,age,gender}){
+
+    
     return(
         <div>
             <h1>{name}</h1>

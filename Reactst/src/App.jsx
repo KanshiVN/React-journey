@@ -1,38 +1,36 @@
 import React, { useState } from "react";
-import Card from "./components/Card";
-import Practice from "./components/Practice";
+import Songs2 from "./components/Songs2";
+import Navbar from "./components/Navbar";
 
 function App() {
+    const data = [
+      {image:"https://images.unsplash.com/photo-1519699047748-de8e457a634e?q=80&w=1180&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",songName:"Bella", artistName:"Jessica",addToFavourite:false},
+      {image:"https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",songName:"Blue Sky", artistName:"Natasha",addToFavourite:false},
+      {image:"https://images.unsplash.com/photo-1726164959171-291645df9ed9?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",songName:"Empty", artistName:"Kanshi",addToFavourite:true},
+      {image:"https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=1904&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",songName:"Mountain", artistName:"Tim Stief",addToFavourite:false},
+    ]
 
-  const data = [
-    {name:"Amit",profession:"mistry",image:"https://images.unsplash.com/photo-1496346236646-50e985b31ea4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",friends:false},
-    {name:"Sneha",profession:"WebDev",image:"https://images.unsplash.com/photo-1611272585212-5a3b87b63294?q=80&w=1365&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",friends:false},
-    {name:"Neha",profession:"Teacher",image:"https://images.unsplash.com/photo-1536331307320-5316320e97cc?q=80&w=1344&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",friends:false},
-    {name:"Rakesh",profession:"Farmer",image:"https://images.pexels.com/photos/3019836/pexels-photo-3019836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",friends:false}
-  ]
-
-  const [realData,setVal] =  useState(data);
-  const handleButton = (cardIndex)=>{
-    setVal((prev)=>{
-      return prev.map((item,index)=>{
-        if(index === cardIndex){
-        return {...item, friends: !item.friends}
-        }
+    const [songData,setData] = useState(data);
+    const clickHandler =(index)=>{
+      setData((prev)=>{
+      return  prev.map((item,itemIndex)=>{
+        if(index === itemIndex ) return{...item, addToFavourite : !item.addToFavourite}
         return item;
       })
-    })
-  }
+      })
+    }
 
   return (
     <>
-    
-      {/* <Practice name ="Kanshi" age = "12" gender = "male" /> */}
-      <div className="w-full h-screen flex items-center justify-center gap-2">
-        {realData.map((item,index)=>(
-          <Card key={index} index ={index } values={item} handleClick = {handleButton}/>
-        ))}
+      <div className="w-full h-screen bg-slate-300"> 
+         <Navbar data={songData}/>
+         <div className="px-20 mt-32 flex gap-10 flex-wrap">
+          {songData.map((item,key)=>{
+            return <Songs2 data = {item} key={key} index={key} clickHandler = {clickHandler}/>
+          })
+        }
+         </div>
       </div>
-      
     </>
   );
 }

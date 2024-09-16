@@ -25,3 +25,4 @@ const {name,profession,image,friends} = values;
 export default Card;
 
 // props use hote hai components ko  reusable banane ke liye
+  
