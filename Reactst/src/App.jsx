@@ -1,28 +1,24 @@
 import React, { useRef, useState } from "react";
-
-
+import FormCards from "./components/FormCards";
+import Form from "./components/Form";
 
 
 function App(){
 
-  const name = useRef(null);
-  const age = useRef(null);
-  const submitData =(data)=>{
-    data.preventDefault();
-      console.log(name.current.value)
-      console.log(age.current.value)
+  const [users,setUsers]=useState([]);
+  const handleFormSubmitData =(data)=>{
+      setUsers([...users,data])
   }
-
-
+  const handleRemove=(id) =>{
+    setUsers(()=>users.filter((item,index)=>index!=id))
+  }
   return (
-
-    <>
-     <form action="" className="mt-20 ml-20"  onSubmit={submitData}>
-      <input type="text" ref={name} placeholder="name" className="border-red-200"/>
-      <input type="text" ref={age} placeholder ="age" />
-      <input type="submit"/>
-     </form>
-    </>
+        <div className="w-full h-screen bg-slate-400 flex items-center justify-center">
+            <div className="container mx-auto "> 
+              <FormCards handleRemove ={handleRemove}  users = {users}/>
+              <Form handleFormSubmitData = {handleFormSubmitData}/>
+            </div>
+        </div>
   );
 }
 

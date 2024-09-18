@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
+    useEffect(()=>{
+        console.log("Home is created");
+        return ()=>{
+            console.log("Home is deleted");            }
+    });
     return (
+      
+
         <div className='mt-10 text-center'>
             <h1 className='font-semibold text-4xl mb-10 '>Home </h1>
             <h2 className='font-semibold text-2xl m-auto mb-10'>Hello there welcome to my home</h2>

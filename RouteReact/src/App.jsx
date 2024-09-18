@@ -1,48 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-import {Routes,Link,Route ,NavLink} from 'react-router-dom';
-import Home from './components/Home'
-import About from './components/About';
-import User from './components/User';
+import Show from './components/Show';
+import About from './components/About'
+import Home from './components/Home';
+import { Link,Route,Routes } from 'react-router-dom';
 
-function App() {
+
+const App = () => {
 
 
   return (
-    <>
-      <nav className='h-full  flex justify-center gap-9 font-semibold text-2xl mb-24 bg-blue-100'>
-       <NavLink style={(e)=>{
-        return{
-          color: e.isActive ? "tomato":"",
-           fontWeight:e.isActive ?"bold" :""
-        }
-       }} to="/">Home</NavLink>
-       <NavLink style={(e)=>{
-        return{
-          color: e.isActive ? "tomato":"",
-          fontWeight:e.isActive ?"bold" :""
-
-        }
-       }}  to="/about">About</NavLink>
-       <NavLink style={(e)=>{
-        return{
-          color: e.isActive ? "tomato":"",
-          fontWeight:e.isActive ?"bold" :""
-
-        }
-       }}  to="/user"> User</NavLink>
+    <div>
+      <nav className='flex  gap-8 text-xl font-semibold justify-center'>
+        <Link to ="/home">Home</Link>
+        <Link to="/about">About</Link>
+        <Link to="/show">Show</Link>
       </nav>
 
       <Routes>
-          <Route path="/" element ={<Home/>}/>
-          <Route path="/about" element ={<About/>}/>
-          <Route path = "/user" element = {<User/>}/>
+        <Route path='/home' element={<Home/>} />
+        <Route path='/about' element={<About/>} />
+        <Route path='/Show' element={<Show/>} />
+     
       </Routes>
-
-    </>
-
-  )
+    </div>
+  );
 }
 
 export default App;
